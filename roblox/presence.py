@@ -77,6 +77,16 @@ class Presence:
         # self.user: BaseUser = BaseUser(self._client, data["userId"])
         self.last_online: datetime = parse(data["lastOnline"])
 
+    def __eq__(self, other : Presence):
+        return (isinstance(other, Presence)
+                and self.user_presence_type == other.user_presence_type
+                and self.last_location == other.last_location
+                and self.place == other.place
+                and self.root_place == other.root_place
+                and self.job == other.job
+                and self.universe == other.universe
+                and self.last_online == other.last_online)
+
     def __repr__(self):
         return f"<{self.__class__.__name__} user_presence_type={self.user_presence_type}>"
 
